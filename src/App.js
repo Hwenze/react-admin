@@ -1,6 +1,7 @@
 import React from 'react'
-import Layout from './Layout';
+import Layout from './pages/Layout';
 import { GlobalStyle } from './style';
+import 'antd/dist/antd.css';
 function App() {
   return (
     <div className="App">

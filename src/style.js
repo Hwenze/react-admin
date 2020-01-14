@@ -88,4 +88,16 @@ export const GlobalStyle = createGlobalStyle`
   .ant-menu-submenu-open{
     background:#37404f;
   }
+  #root .j-layout .ant-menu.ant-menu-dark .ant-menu-item-selected,#root .j-layout .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected{
+    background: cadetblue;
+  }
+  // #root .ant-menu-dark.ant-menu-inline .ant-menu-item{
+  //   background:${CONFIG.mainColor};
+  // }
+  #root .ant-menu-inline .ant-menu-submenu{
+    background:${CONFIG.mainColor};
+  }
+  #root .ant-menu-dark{
+    background: #2a313c;
+  }
 `

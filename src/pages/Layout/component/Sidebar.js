@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import { Menu, Icon } from 'antd';
 import { router } from '../menu';
+import {Link,Router} from 'react-router-dom'
 import {
   MenuLogo,
 } from './style';
@@ -40,7 +41,9 @@ class Sidebar extends Component{
               {
                 item.children.map((citem)=>{
                   return(
-                    <Menu.Item key={citem.path}>{citem.title}</Menu.Item>
+                    <Menu.Item key={citem.path} >
+                      <Link to={citem.path}>{citem.title}</Link>
+                    </Menu.Item>
                   )
                 })
               }
