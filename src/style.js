@@ -60,6 +60,7 @@ export const GlobalStyle = createGlobalStyle`
     overflow:hidden;
     min-height:100%;
     display:flex;
+    width: 100%;
     position: fixed;
   }
   .j-layout-sidebar{
@@ -71,12 +72,57 @@ export const GlobalStyle = createGlobalStyle`
   }
   .j-layout-main{
     flex:1;
+    background:#f7f8fa;
+    // background:#000000;
+  }
+  .main-wrapper{
+    background:#Fff;
+  }
+  .ant-breadcrumb-link .bread-item{
+    color:#fff;
+  }
+  .ant-breadcrumb-link .ant-breadcrumb a:hover {
+    color: #2a313c;
+  }
+  .ant-breadcrumb-link .ant-breadcrumb > span:last-child a{
+    color:#2a313c;
+  }
+  #root .ant-table-thead > tr > th{
+    background:#e4e4e4;
   }
   .menu-container{
     line-height: 36px;
     font-size: 16px;
     user-select: none;
     cursor:pointer;
+  }
+  // 表单
+  .j-header{
+    background:#fff;
+    box-shadow: 0px 0px 8px 0px rgba(0, 7, 17, 0.1);
+    margin-bottom:10px;
+  }
+  .j-from{
+    display:flex;
+    flex-wrap:wrap;
+    align-items: center;
+    padding: 8px 16px;
+  }
+  .w100{
+    width:100%;
+  }
+  .j-btn{
+    min-width:80px; 
+  }
+  .j-from-item{
+    display:flex;
+    line-height:40px;
+    padding-top:10px;
+    padding-right:12px;
+    padding-bottom:6px;
+  }
+  .j-from-item-label{
+    margin-right:12px;
   }
   .ant-menu-item{
     user-select: none;

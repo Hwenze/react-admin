@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { Menu, Icon } from 'antd';
-import { router } from '../menu';
-import {Link,Router} from 'react-router-dom'
+import routes from '../../../router';
+import {Link} from 'react-router-dom'
 import {
   MenuLogo,
 } from './style';
@@ -27,13 +27,14 @@ class Sidebar extends Component{
         openKeys={this.state.openKeys}
         className="menu-container"
       >
-        {router.map((item,index)=>{
+        {routes.map((item,index)=>{
           return(
+            item.children?
             <Menu.SubMenu 
               key={item.path}
               title={
                 <span>
-                  <Icon type={item.icon} />
+                  {item.icon&&<Icon type={item.icon} />}
                   <span>{item.title}</span>
                 </span>
               }
@@ -48,6 +49,15 @@ class Sidebar extends Component{
                 })
               }
             </Menu.SubMenu>
+            :
+            <Menu.Item key={item.path} >
+              <Link to={item.path}>
+                <span>
+                  {item.icon&&<Icon type={item.icon} />}
+                  <span>{item.title}</span>
+                </span>
+              </Link>
+            </Menu.Item>
           )
         })}
       </Menu>
