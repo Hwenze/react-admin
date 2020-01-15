@@ -42,14 +42,17 @@ class Sidebar extends Component{
               {
                 item.children.map((citem)=>{
                   return(
+                    !citem.hide?
                     <Menu.Item key={citem.path} >
                       <Link to={citem.path}>{citem.title}</Link>
                     </Menu.Item>
+                    :''
                   )
                 })
               }
             </Menu.SubMenu>
             :
+            !item.hide?
             <Menu.Item key={item.path} >
               <Link to={item.path}>
                 <span>
@@ -58,6 +61,7 @@ class Sidebar extends Component{
                 </span>
               </Link>
             </Menu.Item>
+            :''
           )
         })}
       </Menu>

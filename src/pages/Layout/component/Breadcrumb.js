@@ -63,10 +63,13 @@ class Breadcrumb extends Component{
         </Item>
         {this.state.currentPath.children && this.state.currentPath.children.map(item=>{
           return(
-            <Fragment>
-              <Item>
-                <Link className="bread-item" to={item.path}>{item.title}</Link>
-              </Item>
+            <Fragment key={item.path}>
+              {this.props.location.pathname.indexOf(item.path)!=-1
+                ?<Item>
+                  <Link className="bread-item" to={item.path}>{item.title}</Link>
+                </Item>
+              :''
+              }
             </Fragment>
           )
         })}

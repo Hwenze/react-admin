@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import SearchFrom from '../../../components/SearchFrom';
 import TableFrom from '../../../components/Table';
+import { Divider , Icon} from 'antd';
 const searchFrom = [
   {
     key:'countryCode',
@@ -41,44 +42,37 @@ const tableList = [
     name:'FHK',
     age:'24',
     sex:'♂',
-    key:1,
+    id:1,
+    phone:'13226627208',
+    time:'2020-1-15 20:50'
   },
   {
     name:'xxx',
     age:'22',
     sex:'♂',
-    key:2,
+    id:2,
+    phone:'13226627208',
+    time:'2020-1-15 20:50'
   },
   {
     name:'Joker',
     age:'24',
     sex:'♀',
-    key:3,
+    id:3,
+    phone:'13226627208',
+    time:'2020-1-15 20:50'
   },
   {
     name:'小饭',
     age:'16',
     sex:'♂',
-    key:4,
+    id:4,
+    phone:'13226627208',
+    time:'2020-1-15 20:50'
   },
 ]
-const col = [
-  {
-    title:'Name',
-    dataIndex:'name',
-    key:'name',
-  },
-  {
-    title:'Age',
-    dataIndex:'age',
-    key:'age',
-  },
-  {
-    title:'Sex',
-    dataIndex:'sex',
-    key:'sex',
-  },
-]
+
+
 class Member extends Component{
   constructor(props){
     super(props);
@@ -86,12 +80,55 @@ class Member extends Component{
   search=(fromData)=>{
     console.log(fromData);
   }
+  openDetails=(record)=>{
+    console.log(record.id);
+    this.props.history.push(`/member/details/${record.id}`)
+  }
   render(){
+    const col = [
+      {
+        title:'ID',
+        dataIndex:'id',
+        key:'id',
+      },
+      {
+        title:'Name',
+        dataIndex:'name',
+        key:'name',
+      },
+      {
+        title:'Phone',
+        dataIndex:'phone',
+        key:'phone',
+      },
+      {
+        title:'Age',
+        dataIndex:'age',
+        key:'age',
+      },
+      {
+        title:'Sex',
+        dataIndex:'sex',
+        key:'sex',
+      },
+      {
+        title:'Action',
+        dataIndex:'action',
+        key:'action',
+        render: (text, record) => (
+          <span>
+            <Icon type="edit" onClick={()=>{this.openDetails(record)}}/>
+            <Divider type="vertical" />
+            <Icon type="delete"></Icon>
+          </span>
+        ),
+      },
+    ]
     return(
       <div>
         <SearchFrom data={searchFrom} search={this.search}/>
         <div className="main-wrapper">
-          <TableFrom data={tableList} col={col} ></TableFrom>
+          <TableFrom rowKey='uid' data={tableList} col={col} ></TableFrom>
         </div>
       </div>
     )

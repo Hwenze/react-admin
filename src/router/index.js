@@ -20,6 +20,7 @@ const routes = [
     icon:'home',
     component:Home,
     name:'home',
+    hide:false,
   },
   {
     title:'Member',
@@ -28,23 +29,24 @@ const routes = [
     component:Member,
     redirect:'/member/list',
     name:'member',
+    hide:false,
     children:[
       {
         title:'Member List',
         path:'/member/list',
         icon:'',
         name:'member-list',
+        hide:false,
         component:Member,
-        children:[
-          {
-            title:'Member Details',
-            path:'/member/details',
-            icon:'',
-            name:'member-details',
-            component:Details,
-          }
-        ]
       },
+      {
+        title:'Member Details',
+        path:'/member/details/:id',
+        icon:'',
+        name:'member-details',
+        hide:true,
+        component:Details,
+      }
     ]
   },
   {

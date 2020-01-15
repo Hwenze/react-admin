@@ -81,7 +81,7 @@ export const GlobalStyle = createGlobalStyle`
   .ant-breadcrumb-link .bread-item{
     color:#fff;
   }
-  .ant-breadcrumb-link .ant-breadcrumb a:hover {
+  #root .ant-breadcrumb a:hover {
     color: #2a313c;
   }
   .ant-breadcrumb-link .ant-breadcrumb > span:last-child a{
@@ -114,8 +114,12 @@ export const GlobalStyle = createGlobalStyle`
   .j-btn{
     min-width:80px; 
   }
+  .flex-column .j-from-item{
+    flex-direction: column;
+  }
   .j-from-item{
     display:flex;
+    flex-direction: row;
     line-height:40px;
     padding-top:10px;
     padding-right:12px;
@@ -137,13 +141,19 @@ export const GlobalStyle = createGlobalStyle`
   #root .j-layout .ant-menu.ant-menu-dark .ant-menu-item-selected,#root .j-layout .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected{
     background: cadetblue;
   }
-  // #root .ant-menu-dark.ant-menu-inline .ant-menu-item{
-  //   background:${CONFIG.mainColor};
-  // }
   #root .ant-menu-inline .ant-menu-submenu{
     background:${CONFIG.mainColor};
   }
   #root .ant-menu-dark{
     background: #2a313c;
+  }
+  #root .anticon{
+    cursor:pointer;
+  }
+  .p-15{
+    padding:15px; 
+  }
+  .m-15{
+    margin:15px; 
   }
 `
