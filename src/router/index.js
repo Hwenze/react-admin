@@ -8,6 +8,7 @@ import loadComponent from '../pages/Layout/component/loadComponent';
 const Home = loadComponent(()=>import('../pages/home/index'));
 // member
 const Member = loadComponent(()=>import('../pages/member/memberList/index'));
+const Review = loadComponent(()=>import('../pages/member/memberReview/index'));
 
 const Details = loadComponent(()=>import('../pages/member/memberList/Details'));
 const ProductList = loadComponent(()=>import('../pages/product/productList/List'));
@@ -50,7 +51,16 @@ const routes = [
         name:'member-details',
         hide:true,
         component:Details,
-      }
+      },
+      {
+        title:'Member Review',
+        path:'/review',
+        icon:'',
+        bread:'/member/review',
+        name:'member-review',
+        hide:false,
+        component:Review,
+      },
     ]
   },
   {
@@ -63,7 +73,7 @@ const routes = [
     children:[
       {
         title:'Product List',
-        path:'/product/list',
+        path:'/list',
         icon:'',
         name:'product-list',
         bread:'/product/list',

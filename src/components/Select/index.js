@@ -3,7 +3,6 @@ import {Select} from 'antd';
 const SelectItem =(props)=>{
   return(
     <Select style={{width:props.width?props.width:'180px'}} defaultValue={props.value}>
-      <Select.Option label="1" value="2"></Select.Option>
       {props.option.map((item,index)=>{
          return <Select.Option key={index} value={item.value}>{item.label}</Select.Option> 
        })} 

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Country from '../Country';
 import { 
   Select ,
   Input ,
   Button ,
-  DatePicker  
+  DatePicker  ,
+  notification, 
 } from 'antd';
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 class SearchFrom extends Component{
@@ -16,7 +18,24 @@ class SearchFrom extends Component{
   }
   // 搜索方案 回调方案
   search=()=>{
-    this.props.search(this.state.fromData);
+    let message = [];
+    for (const key in this.state.fromData) {
+      if (this.state.fromData.hasOwnProperty(key)) {
+        message.push(
+        <p key={key} style={{marginBottom:'4px',marginLeft:'16px'}}>
+          {key}:<span style={{color:'red'}}>{this.state.fromData[key]}</span>
+        </p>)
+      }
+    }
+    notification.open({
+      message: 'Your Search Result',
+      description:message,
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+    
+    // this.props.search(this.state.fromData);
   }
   // 初始化头部值
   componentWillMount(){
@@ -24,11 +43,21 @@ class SearchFrom extends Component{
     for(let i = 0 ; i < this.state.data.length; i++){
       fromData[this.state.data[i].key] = this.state.data[i].value?this.state.data[i].value:'';
     }
+    if(this.state.fromData['country']){
+      this.changeCountry(this.state.fromData['country']);
+    }
     this.setState({
       fromData:fromData
     })
   }
   //----------------------methods---------------------------------------------------------------------------
+  // 切换国家
+  changeCountry=(code)=>{
+    let from = this.state.fromData;
+    this.setState({
+      fromData:{...from,countryCode:code}
+    })
+  }
   // 下拉框操作
   changeSelect=(k,v)=>{
     let fromData = this.state.fromData;
@@ -69,7 +98,7 @@ class SearchFrom extends Component{
   renderSelect=(data)=>{
     return( 
       <Select defaultValue={this.state.fromData[data.key]} 
-        style={{ width: 120 }} 
+        style={{ width: '180px' }} 
         onChange={
           (item)=>{this.changeSelect(data.key,item)}
         }>
@@ -132,6 +161,8 @@ class SearchFrom extends Component{
       <div className="j-from j-header">
         {this.state.data.map((item,index)=>{
           switch(item.type){
+            case 'country': // 下拉框
+              return this.renderFromItem(item.label,index,<Country width="180px" changeCountry={this.changeCountry}/>)
             case 'select': // 下拉框
               return this.renderFromItem(item.label,index,this.renderSelect(item))
             case 'input': //  输入框

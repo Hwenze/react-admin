@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
 import SearchFrom from '../../../components/SearchFrom';
 import TableFrom from '../../../components/Table';
-import { Divider , Icon} from 'antd';
+import { Divider , Icon, Tag} from 'antd';
+import {connect} from 'react-redux';
+import action from './state/action';
 const searchFrom = [
   {
     key:'countryCode',
@@ -39,36 +41,60 @@ const searchFrom = [
 ];
 const tableList = [
   {
-    name:'FHK',
-    age:'24',
-    sex:'♂',
-    id:"1",
+    id:'215537936',
+    level:'Admin',
+    username:'Joker',
+    gender:'1',
     phone:'13226627208',
-    time:'2020-1-15 20:50'
+    countryCode:'CN',
+    note:'Hi! My name is Joker',
+    sellerType:'online',
+    sellerSince:'2020-1-16',
+    address:'广州码农炒饭有限公司',
+    shopSite:'100',
+    trafficOrFollower:'255'
   },
   {
-    name:'xxx',
-    age:'22',
-    sex:'♂',
-    id:"2",
-    phone:'13226627208',
-    time:'2020-1-15 20:50'
+    id:'123456789',
+    level:'VIP',
+    username:'小饭',
+    gender:'2',
+    phone:'13226617552',
+    countryCode:'CN',
+    note:'Hi! My name is 小饭',
+    sellerType:'underline',
+    sellerSince:'2019-8-16',
+    address:'广州澳鹏科技有限公司',
+    shopSite:'50',
+    trafficOrFollower:'255'
   },
   {
-    name:'Joker',
-    age:'24',
-    sex:'♀',
-    id:"3",
+    id:'11111110',
+    level:'Admin',
+    username:'FHK',
+    gender:'1',
     phone:'13226627208',
-    time:'2020-1-15 20:50'
+    countryCode:'US',
+    note:'Hi! My name is FHK',
+    sellerType:'online',
+    sellerSince:'2018-5-16',
+    address:'广东广通医药公司',
+    shopSite:'100',
+    trafficOrFollower:'255'
   },
   {
-    name:'小饭',
-    age:'16',
-    sex:'♂',
-    id:"4",
+    id:'110119120',
+    level:'Manager',
+    username:'范鸿楷',
+    gender:'1',
     phone:'13226627208',
-    time:'2020-1-15 20:50'
+    countryCode:'CN',
+    note:'Hi! My name is 范鸿楷',
+    sellerType:'online',
+    sellerSince:'2018-9-16',
+    address:'潮汕码农猪脚饭有限公司',
+    shopSite:'100',
+    trafficOrFollower:'255'
   },
 ]
 
@@ -81,6 +107,7 @@ class Member extends Component{
     console.log(fromData);
   }
   openDetails=(record)=>{
+    this.props.changeInfo(record);
     this.props.history.push(`/member/details/${record.id}`)
   }
   render(){
@@ -92,8 +119,8 @@ class Member extends Component{
       },
       {
         title:'Name',
-        dataIndex:'name',
-        key:'name',
+        dataIndex:'username',
+        key:'username',
       },
       {
         title:'Phone',
@@ -101,14 +128,39 @@ class Member extends Component{
         key:'phone',
       },
       {
-        title:'Age',
-        dataIndex:'age',
-        key:'age',
+        title:'Gender',
+        dataIndex:'gender',
+        key:'gender',
+        render: (text, record) => (
+          <span>
+            {record.gender==1?
+            <Icon type="man" />:
+            <Icon type="woman" />}
+          </span>
+        ),
       },
       {
-        title:'Sex',
-        dataIndex:'sex',
-        key:'sex',
+        title:'Country',
+        dataIndex:'countryCode',
+        key:'countryCode',
+      },
+      {
+        title:'Job Year',
+        dataIndex:'sellerSince',
+        key:'sellerSince',
+      },
+      {
+        title:'Address',
+        dataIndex:'address',
+        key:'address',
+      },
+      {
+        title:'Level',
+        dataIndex:'level',
+        key:'level',
+        render: (text, record) => (
+          <Tag>{record.level}</Tag>
+        ),
       },
       {
         title:'Action',
@@ -133,4 +185,17 @@ class Member extends Component{
     )
   }
 }
-export default Member;
+const toState = (state)=>{
+  return{
+
+  }
+}
+const toProps = (dispatch)=>{
+  return{
+    changeInfo(item){
+      console.log('1');
+      dispatch(action.CHANEG_MEMBER_INFO(item));
+    }
+  }
+}
+export default connect(toState,toProps)(Member);

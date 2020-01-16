@@ -24,6 +24,10 @@ export const GlobalStyle = createGlobalStyle`
     font: inherit;
     vertical-align: baseline;
   }
+  #root p{
+    margin:0;
+    padding:0;
+  }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure, 
   footer, header, hgroup, menu, nav, section {
@@ -73,7 +77,7 @@ export const GlobalStyle = createGlobalStyle`
   .j-layout-main{
     flex:1;
     background:#f7f8fa;
-    // background:#000000;
+    position:relative;
   }
   .main-wrapper{
     background:#Fff;
