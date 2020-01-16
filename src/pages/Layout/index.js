@@ -20,7 +20,9 @@ class Layout extends Component{
         {/* 内容展示区域 */}
         <div className="j-layout-main">
           <Breadcrumb />
-          <Main></Main>
+          <div style={{marginTop:30}}>
+            <Main></Main>
+          </div>
         </div>
       </div>
     )

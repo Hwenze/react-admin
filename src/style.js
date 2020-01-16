@@ -65,7 +65,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height:100%;
     display:flex;
     width: 100%;
-    position: fixed;
+    // position: fixed;
   }
   .j-layout-sidebar{
     min-height:100%;
@@ -74,13 +74,27 @@ export const GlobalStyle = createGlobalStyle`
     color:#fff;
     background:${CONFIG.mainColor};
   }
-  .j-layout-main{
-    flex:1;
-    background:#f7f8fa;
-    position:relative;
+  .j-layout-main{ 
+    max-height: 100vh;
+    -ms-flex: 1;
+    flex: 1;
+    min-height: 100vh;
+    background: #f7f8fa;
+    position: relative;
+    overflow: scroll;
   }
   .main-wrapper{
     background:#Fff;
+  }
+  .ant-breadcrumb{
+    // background: rgba(42, 49, 60, 0.51);
+    background:#fff;
+    padding: 5px 10px;
+    position: fixed;
+    right: 0;
+    top:0;
+    left: 220px;
+    z-index: 999;
   }
   .ant-breadcrumb-link .bread-item{
     color:#fff;

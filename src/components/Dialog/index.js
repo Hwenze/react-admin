@@ -12,6 +12,7 @@ class Dialog extends Component{
       <Modal 
         width={this.props.width?this.props.width:'600px'}
         visible={this.props.dialog}
+        footer={this.props.footer}
         title={this.props.title?this.props.title:''}
         onOk={()=>{this.btn('ok')}}
         onCancel={()=>{this.btn('cancel')}}>

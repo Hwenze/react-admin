@@ -11,7 +11,7 @@ const Member = loadComponent(()=>import('../pages/member/memberList/index'));
 const Review = loadComponent(()=>import('../pages/member/memberReview/index'));
 
 const Details = loadComponent(()=>import('../pages/member/memberList/Details'));
-const ProductList = loadComponent(()=>import('../pages/product/productList/List'));
+const ProductList = loadComponent(()=>import('../pages/product/productList'));
 const ProductDetails = loadComponent(()=>import('../pages/product/productList/Details'));
 
 const routes = [

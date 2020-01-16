@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{Component, Fragment} from 'react';
 import SearchFrom from '../../../components/SearchFrom';
 import TableFrom from '../../../components/Table';
 import { Divider , Icon, Tag} from 'antd';
@@ -176,12 +176,12 @@ class Member extends Component{
       },
     ]
     return(
-      <div>
+      <Fragment>
         <SearchFrom data={searchFrom} search={this.search}/>
         <div className="main-wrapper">
           <TableFrom rowKey={(r,i)=>(i)} data={tableList} col={col} ></TableFrom>
         </div>
-      </div>
+      </Fragment>
     )
   }
 }
