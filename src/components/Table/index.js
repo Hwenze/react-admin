@@ -1,8 +1,8 @@
 import React from 'react';
 import { Table } from 'antd';
-const TableFrom=(props)=>{
+const TableFrom=({data:data,col:col,...props})=>{
   return(
-    <Table dataSource={props.data} columns={props.col} {...props.attr}/>
+    <Table dataSource={data} columns={col} {...props}/>
   )
 }
 export default TableFrom;

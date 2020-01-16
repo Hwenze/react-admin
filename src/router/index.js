@@ -19,6 +19,7 @@ const routes = [
     path:'/',
     icon:'home',
     component:Home,
+    bread:'home',
     name:'home',
     hide:false,
   },
@@ -27,22 +28,25 @@ const routes = [
     path:'/member',
     icon:'user',
     component:Member,
+    bread:'/member',
     redirect:'/member/list',
     name:'member',
     hide:false,
     children:[
       {
         title:'Member List',
-        path:'/member/list',
+        path:'/list',
         icon:'',
         name:'member-list',
+        bread:'/member/list',
         hide:false,
         component:Member,
       },
       {
         title:'Member Details',
-        path:'/member/details/:id',
+        path:'/details/:id',
         icon:'',
+        bread:'/member/details',
         name:'member-details',
         hide:true,
         component:Details,
@@ -54,6 +58,7 @@ const routes = [
     path:'/product',
     icon:'shopping',
     name:'product',
+    bread:'/product/list',
     component:ProductList,
     children:[
       {
@@ -61,6 +66,7 @@ const routes = [
         path:'/product/list',
         icon:'',
         name:'product-list',
+        bread:'/product/list',
         component:ProductList,
         children:[]
       },

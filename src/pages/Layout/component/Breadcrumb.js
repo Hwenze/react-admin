@@ -7,39 +7,36 @@ class Breadcrumb extends Component{
   constructor(props){
     super(props);
     const index = this.getCurrentRoute(this.props.location.pathname);
+    const resultAllRoter = this.getAllRoute(routes[index]);
     this.state={
-      currentPath:routes[index]
+      currentPath:routes[index],
+      currentArr:resultAllRoter
     }
+  }
+  componentDidMount(){
+    console.log(this.props.location.pathname)
+  }
+  getAllRoute=(data)=>{
+    let arr = [];
+    const getRoute = (data)=>{
+      if(data.children && data.children.length>0){
+        arr.push(data);
+        data.children.map(item=>{
+          getRoute(item);
+        })
+      }else{
+        arr.push(data); 
+      }
+    }
+    getRoute(data);
+    return arr;
   }
   componentWillReceiveProps(nextProps){
     const index = this.getCurrentRoute(nextProps.location.pathname);
     this.setState({
-      currentPath:routes[index]
+      currentPath:routes[index],
+      currentArr:this.getAllRoute(routes[index])
     })
-  }
-  forI=(arr,max)=>{
-    let str = '';
-    for(let i = 0 ; i <= max;i++){
-      if(i == max){
-        str+=arr[i];
-      }else{
-        str+='/'+arr[i]+'/';
-      }
-    }
-    return str;
-  } 
-  getRouteStr=(pathArr)=>{
-    let arr = [];
-    pathArr.map((item,index)=>{
-      if(index == 0){
-        arr.push({
-          path:'/'+item,
-        });
-      }else{
-        arr.push(this.forI(pathArr,index));
-      }
-    })
-    return arr;
   }
   getCurrentRoute=(pathname)=>{
     const pathArr = (pathname.split('/')).splice(1);
@@ -48,6 +45,17 @@ class Breadcrumb extends Component{
     });
     current = current!=-1?current:0;
     return current;
+  }
+  getLastPath=(parent,child)=>{
+    const INDEX = child.lastIndexOf(':');
+    child = INDEX!=-1?(child).substr(0,INDEX-1):child;
+    let STR = '';
+    if(parent==child){
+      STR=false;
+    }else{
+      STR=parent+child;
+    }
+    return STR;
   }
   render(){
     return(
@@ -61,14 +69,14 @@ class Breadcrumb extends Component{
         <Item>
           <Link className="bread-item" to={this.state.currentPath.path}>{this.state.currentPath.title}</Link>
         </Item>
-        {this.state.currentPath.children && this.state.currentPath.children.map(item=>{
+        {this.state.currentArr.map(item=>{
           return(
             <Fragment key={item.path}>
-              {this.props.location.pathname.indexOf(item.path)!=-1
-                ?<Item>
+              {
+                this.props.location.pathname.indexOf(this.getLastPath(this.state.currentPath.path,item.path))!=-1
+                &&<Item>
                   <Link className="bread-item" to={item.path}>{item.title}</Link>
                 </Item>
-              :''
               }
             </Fragment>
           )

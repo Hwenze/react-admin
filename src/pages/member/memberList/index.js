@@ -42,7 +42,7 @@ const tableList = [
     name:'FHK',
     age:'24',
     sex:'♂',
-    id:1,
+    id:"1",
     phone:'13226627208',
     time:'2020-1-15 20:50'
   },
@@ -50,7 +50,7 @@ const tableList = [
     name:'xxx',
     age:'22',
     sex:'♂',
-    id:2,
+    id:"2",
     phone:'13226627208',
     time:'2020-1-15 20:50'
   },
@@ -58,7 +58,7 @@ const tableList = [
     name:'Joker',
     age:'24',
     sex:'♀',
-    id:3,
+    id:"3",
     phone:'13226627208',
     time:'2020-1-15 20:50'
   },
@@ -66,7 +66,7 @@ const tableList = [
     name:'小饭',
     age:'16',
     sex:'♂',
-    id:4,
+    id:"4",
     phone:'13226627208',
     time:'2020-1-15 20:50'
   },
@@ -81,7 +81,6 @@ class Member extends Component{
     console.log(fromData);
   }
   openDetails=(record)=>{
-    console.log(record.id);
     this.props.history.push(`/member/details/${record.id}`)
   }
   render(){
@@ -128,7 +127,7 @@ class Member extends Component{
       <div>
         <SearchFrom data={searchFrom} search={this.search}/>
         <div className="main-wrapper">
-          <TableFrom rowKey='uid' data={tableList} col={col} ></TableFrom>
+          <TableFrom rowKey={(r,i)=>(i)} data={tableList} col={col} ></TableFrom>
         </div>
       </div>
     )

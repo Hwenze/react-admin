@@ -43,8 +43,8 @@ class Sidebar extends Component{
                 item.children.map((citem)=>{
                   return(
                     !citem.hide?
-                    <Menu.Item key={citem.path} >
-                      <Link to={citem.path}>{citem.title}</Link>
+                    <Menu.Item key={(item.path?item.path:'')+citem.path} >
+                      <Link to={(item.path?item.path:'')+citem.path}>{citem.title}</Link>
                     </Menu.Item>
                     :''
                   )

@@ -88,25 +88,25 @@ class SearchFrom extends Component{
   // Picker日期选择器
   renderPicker=(data,type="pricker")=>{
     switch(type){
-      case 'datePicker': // 下拉框
+      case 'datePicker': // 日期选择器
         return(
           <DatePicker onChange={(item)=>{
             this.changePicker(data.key,item)
           }} />
         )
-      case 'monthPicker': // 下拉框
+      case 'monthPicker': // 月选择器
         return(
           <MonthPicker onChange={(item)=>{
             this.changePicker(data.key,item)
           }} />
         )
-      case 'weekPicker': //  日期选择器
+      case 'weekPicker': //  周选择器
         return(
           <WeekPicker onChange={(item)=>{
             this.changePicker(data.key,item)
           }} />
         )
-      default: //  日期选择器
+      default: //  范围选择器
         return(
           <RangePicker onChange={(item)=>{
             this.changePicker(data.key,item)
