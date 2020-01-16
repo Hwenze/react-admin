@@ -2,19 +2,44 @@ import React,{Component} from 'react';
 import SearchFrom from '../../../components/SearchFrom';
 import TableFrom from '../../../components/Table';
 import tableList from './data';
+import Dialog from '../../../components/Dialog';
 import {
   Icon,
   Divider
 } from 'antd';
+import { FromItem } from '../../../components/FromItem';
 class MemberReview extends Component{
   constructor(props){
     super(props);
+    this.state={
+      dialog:false,
+      currentData:{},
+    }
   }
   openDetails=(item)=>{
-    console.log(item);
+    this.setState({
+      dialog:true,
+      currentData:item
+    })
   }
   search=(data)=>{
     console.log(data);
+  }
+  reviewDetails=()=>{
+    let result = [];
+    for (const key in this.state.currentData) {
+      if (this.state.currentData.hasOwnProperty(key)) {
+        const value = this.state.currentData[key];
+        result.push(<FromItem style={{width:'300px'}} key={key} label={`${key}：`} component={value}></FromItem>)
+      }
+    }
+    return result;
+  }
+  result=(type)=>{
+    this.setState({
+      dialog:false,
+      currentData:{}
+    })
   }
   render(){
     const searchFrom = [
@@ -22,7 +47,14 @@ class MemberReview extends Component{
         label:'Country',
         type:'country',
         key:'countryCode',
-        value:'CN'
+        value:'CN'  
+      },
+      {
+        label:'Username',
+        type:'input',
+        key:'username',
+        value:'',
+        placeholder:'Please enter...'
       },
       {
         type:'select',
@@ -97,6 +129,16 @@ class MemberReview extends Component{
         <div className="main-wrapper">
           <TableFrom rowKey={(r,i)=>(i)} data={tableList} col={col} ></TableFrom>
         </div>
+        <Dialog 
+          width="800px"
+          dialog={this.state.dialog} 
+          result={this.result}
+          component={
+            <div className="j-from" style={{maxHeight:'60vh',overflow:'auto'}}>
+              {this.reviewDetails()}
+            </div>
+          } 
+          title="Business Application"></Dialog>
       </div>
     )
   }

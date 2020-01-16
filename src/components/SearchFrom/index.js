@@ -23,7 +23,7 @@ class SearchFrom extends Component{
       if (this.state.fromData.hasOwnProperty(key)) {
         message.push(
         <p key={key} style={{marginBottom:'4px',marginLeft:'16px'}}>
-          {key}:<span style={{color:'red'}}>{this.state.fromData[key]}</span>
+          {key}:<span style={{color:'red'}}>{JSON.stringify(this.state.fromData[key])}</span>
         </p>)
       }
     }
@@ -78,7 +78,12 @@ class SearchFrom extends Component{
   changePicker=(k,v)=>{
     let fromData = this.state.fromData;
     if(v){
-      fromData[k] = v.map(item=>item._d);
+      if(v.length>0){
+        fromData[k] = v.map(item=>item._d);
+      }else{
+        // console.log(v._d); 
+        fromData[k] = v._d;
+      }
     }
     this.setState({
       fromData:fromData
@@ -162,7 +167,7 @@ class SearchFrom extends Component{
         {this.state.data.map((item,index)=>{
           switch(item.type){
             case 'country': // 下拉框
-              return this.renderFromItem(item.label,index,<Country width="180px" changeCountry={this.changeCountry}/>)
+              return this.renderFromItem(item.label,index,<Country value={item.value} width="180px" changeCountry={this.changeCountry}/>)
             case 'select': // 下拉框
               return this.renderFromItem(item.label,index,this.renderSelect(item))
             case 'input': //  输入框

@@ -22,6 +22,7 @@ const Country = (props)=>{
   const changeCountry =(value)=>{
     props.changeCountry(value);
   }
+  console.log(props);
   return(
     <Select style={{width:props.width?props.width:'180px'}} defaultValue={props.value?props.value:'CN'} onChange={changeCountry}>
       {countryList.map(item=>{
