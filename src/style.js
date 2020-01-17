@@ -178,4 +178,7 @@ export const GlobalStyle = createGlobalStyle`
   .m-15{
     margin:15px; 
   }
+  .ant-table-tbody>tr>td, .ant-table-thead>tr>th{
+    vertical-align: middle;
+  }
 `

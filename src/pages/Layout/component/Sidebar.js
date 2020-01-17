@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Avatar } from 'antd';
 import routes from '../../../router';
 import {Link} from 'react-router-dom'
 import {
@@ -72,6 +72,7 @@ class Sidebar extends Component{
       <div>
         <MenuLogo>OPSHOP</MenuLogo>
         {this.getMenu()}
+        <Avatar style={{ backgroundColor: '#87d068' }} icon="user" />
       </div>
     )
   }
