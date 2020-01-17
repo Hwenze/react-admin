@@ -132,6 +132,10 @@ export const GlobalStyle = createGlobalStyle`
   .j-btn{
     min-width:80px; 
   }
+  .img{
+    width:100%;
+    height:100%;
+  }
   .flex-column .j-from-item{
     flex-direction: column;
   }

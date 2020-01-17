@@ -2,21 +2,25 @@ import React,{Component,Fragment} from 'react';
 import SearchFrom from '../../../components/SearchFrom';
 import TableFrom from '../../../components/Table';
 import tableList from './data';
+import {connect} from 'react-redux';
 import Dialog from '../../../components/Dialog';
 import {
   Icon,
   Switch,
   Divider,
 } from 'antd'
+import action from '../state/action';
 const searchFrom = [
   {
     type:'input',
+    key:'category',
     value:'',
     label:'Category'
   },
   {
     type:'select',
     value:'',
+    key:'status',
     label:'Status',
     data:[
       { label:'All' , value:'' },
@@ -28,6 +32,7 @@ const searchFrom = [
     type:'select',
     value:'',
     label:'From',
+    key:'from',
     data:[
       { label:'All' , value:'' },
       { label:'Taobao' , value:'taobao' },
@@ -38,11 +43,13 @@ const searchFrom = [
   {
     label:'Product ID',
     value:'',
+    key:'productId',
     type:'input'
   },
   {
     label:'Product Name',
     value:'',
+    key:'productName',
     type:'input'
   },
 ]
@@ -54,8 +61,10 @@ class List extends Component{
       bigImageSrc:'',
     }
   }
-  openDetails=(item)=>{
-    console.log(item);
+  openDetails=(record)=>{
+    // this.props.changeInfo(record);
+    this.props.changeProductInfo(record);
+    this.props.history.push(`/product/details/${record.id}`)
   }
   showBigImage=(item)=>{
     this.setState({
@@ -115,7 +124,7 @@ class List extends Component{
         dataIndex:'status',
         key:'status',
         render:(text, record) => (
-          <Switch size="small" defaultChecked={record.status==1?true:false} />
+          <Switch size="small" defaultChecked={record.status===1?true:false} />
         )
       },
       {
@@ -146,4 +155,16 @@ class List extends Component{
     )
   }
 }
-export default List;
+const toState = (state)=>{
+  return{
+
+  }
+}
+const toProps = (dispatch)=>{
+  return{
+    changeProductInfo(value){
+      dispatch(action.CHANEG_PRODUCT_INFO(value))
+    }
+  }
+}
+export default connect(toState,toProps)(List);

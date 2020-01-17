@@ -69,6 +69,7 @@ const routes = [
     icon:'shopping',
     name:'product',
     bread:'/product/list',
+    hide:false,
     component:ProductList,
     children:[
       {
@@ -77,8 +78,19 @@ const routes = [
         icon:'',
         name:'product-list',
         bread:'/product/list',
+        hide:false,
         component:ProductList,
         children:[]
+      },
+      {
+        title:'Product Details',
+        path:'/details/:id',
+        icon:'',
+        name:'product-details',
+        bread:'/product/details',
+        component:ProductDetails,
+        children:[],
+        hide:true,
       },
     ]
   }
