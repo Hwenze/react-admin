@@ -14,6 +14,9 @@ const Details = loadComponent(()=>import('../pages/member/memberList/Details'));
 const ProductList = loadComponent(()=>import('../pages/product/productList'));
 const ProductDetails = loadComponent(()=>import('../pages/product/productList/Details'));
 
+const DemoList = loadComponent(()=>import('../pages/product/demoList'));
+const DemoDetails = loadComponent(()=>import('../pages/product/demoList/Details'));
+
 const routes = [
   { 
     title:'Home',
@@ -89,6 +92,26 @@ const routes = [
         name:'product-details',
         bread:'/product/details',
         component:ProductDetails,
+        children:[],
+        hide:true,
+      },
+      {
+        title:'demo List',
+        path:'/demoList',
+        icon:'',
+        name:'demo-list',
+        bread:'/demo/list',
+        hide:false,
+        component:DemoList,
+        children:[]
+      },
+      {
+        title:'demo Details',
+        path:'/demoDetails/:id',
+        icon:'',
+        name:'demo-details',
+        bread:'/demo/details',
+        component:DemoDetails,
         children:[],
         hide:true,
       },

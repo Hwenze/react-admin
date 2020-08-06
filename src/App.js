@@ -1,8 +1,9 @@
-import React from 'react'
+import 'antd/dist/antd.css';
+import React from 'react';
+import { HashRouter } from 'react-router-dom';
 import Layout from './pages/Layout';
 import { GlobalStyle } from './style';
-import { BrowserRouter,HashRouter } from 'react-router-dom';
-import 'antd/dist/antd.css';
+import './common/scss/common/base.scss';
 function App() {
   return (
     // BrowserRouter 本地测试

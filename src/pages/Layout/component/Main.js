@@ -1,8 +1,7 @@
-import React,{Component} from 'react';
-import { Switch,Route } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Switch } from 'react-router-dom';
 import routes from '../../../router';
 import JRouter from './createRoute';
-import Details from '../../member/memberList/Details';
 class Main extends Component{
   constructor(props){
     super(props);

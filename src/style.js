@@ -65,7 +65,7 @@ export const GlobalStyle = createGlobalStyle`
     min-height:100%;
     display:flex;
     width: 100%;
-    // position: fixed;
+    /* position: fixed; */
   }
   .j-layout-sidebar{
     min-height:100%;
@@ -87,7 +87,7 @@ export const GlobalStyle = createGlobalStyle`
     background:#Fff;
   }
   .ant-breadcrumb{
-    // background: rgba(42, 49, 60, 0.51);
+    /* background: rgba(42, 49, 60, 0.51); */
     background:#fff;
     padding: 5px 10px;
     position: fixed;
